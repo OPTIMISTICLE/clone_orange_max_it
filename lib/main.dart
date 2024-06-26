@@ -5,6 +5,7 @@ void main() {
     MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
           leading: Image.asset("Wireframe/atom_orangelogo_small.png"),
           actions: const [
@@ -14,25 +15,28 @@ void main() {
             Bar(path: "Wireframe/Profil.png"),
           ],
         ),
-        body: hld(),
+        body: Hld(),
       ),
     ),
   );
 }
 
-class hld extends StatelessWidget{
-
+class Hld extends StatelessWidget {
   @override
-  Widget build(BuildContext context){
-    return Column(
-      children: [
-        Homee(),
-        Homeee()
-      ],
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Homee(),
+          Homeee(),
+          Homeeee(),
+          Homeeeee(),
+          Homeeeeee(),
+        ],
+      ),
     );
   }
 }
-
 
 class Homee extends StatelessWidget {
   @override
@@ -46,21 +50,21 @@ class Homee extends StatelessWidget {
           ),
         ),
       ),
-      padding: const EdgeInsets.all(30),
-      height: 350,
+      padding: const EdgeInsets.all(10),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           const Row(
             children: [
-              Text("Bienvenue, +225 07 67516592"),
+              Text("Bienvenue, +225 0767516592"),
             ],
           ),
+          SizedBox(height: 10),
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Section1(
                     logo: "Wireframe/Functional_UI - ic_Donation 1-1.png",
@@ -74,13 +78,13 @@ class Homee extends StatelessWidget {
                   ),
                 ],
               ),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  ActionButton(logo: "Wireframe/Group 1365.png"),
-                  ActionButton(logo: "Wireframe/Content image.png"),
-                  ActionButton(logo: "Wireframe/Thumbnail.png"),
-                  ActionButton(logo: "Wireframe/Thumbnail-1.png"),
+                  ActionButton(logo: "Wireframe/Group 1365.png", data: "Recharger          ."),
+                  ActionButton(logo: "Wireframe/Content image.png", data: "Acheter un pass"),
+                  ActionButton(logo: "Wireframe/Thumbnail.png", data: "Transfert d'argent"),
+                  ActionButton(logo: "Wireframe/Thumbnail-1.png", data: "Paiement marchand"),
                 ],
               ),
             ],
@@ -103,93 +107,106 @@ class Homeee extends StatelessWidget {
           ),
         ),
       ),
-      padding: const EdgeInsets.all(30),
-      height: 350,
+      padding: const EdgeInsets.all(20),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: const [
-              Text("Services"),
-            ],
+          const Text(
+            "Services",
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           Row(
+            children: [
+              ActionButton(logo: "Wireframe/Illustration.png", width: 124, height: 162, data: "CAF 2023 Match Centre"),
+              const SizedBox(width: 10),
+              Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Container(
-                height: 200,
-                child: const ActionButton(logo: "Wireframe/Illustration.png")),
-              Container(
-                height: 250,
-                width: 250,
-                child: Expanded(
-                  child: GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 13.0, // Optional: spacing between rows
-                      crossAxisSpacing: 15.0, // Optional: spacing between columns
-                    ),
-                    itemCount: 4, // Adjust this as needed
-                    itemBuilder: (BuildContext context, int index) {
-                      // You can use a list of image paths if you have multiple images
-                      List<String> logos = [
-                        "Wireframe/atom_quickicon_deals.png",
-                        "Wireframe/Trace 39.png",
-                        "Wireframe/atom_quickicon_ozen.png",
-                        "Wireframe/Trace 25416.png"
-                      ];
-                      return ActionButton(logo: logos[index]);
-                    },
-                    shrinkWrap: true,
-                    padding: EdgeInsets.all(25),
-                    physics: NeverScrollableScrollPhysics(),
-                  ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ActionButton(logo: "Wireframe/atom_quickicon_deals.png", data: "Promo"),
+                  SizedBox(width: 10,),
+                  ActionButton(logo: "Wireframe/Trace 39.png", data: "Ma SIM"),
+                ],
                 ),
-              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ActionButton(logo: "Wireframe/atom_quickicon_ozen.png", data: "O'zen               ."),
+                  const SizedBox(width: 10),
+                  ActionButton(logo: "Wireframe/Trace 25416.png", data: "Live Streaming"),
+                ],
+              )
+              
             ],
-          )
+          ),
+            ],
+          ),
+          
         ],
       ),
     );
   }
 }
 
+
 class ActionButton extends StatelessWidget {
-  const ActionButton({super.key, required this.logo});
+  ActionButton({Key? key, required this.logo, this.data = "", this.width = 55, this.height = 55});
+
   final String logo;
+  final double width;
+  final double height;
+  final String data;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        color: Color.fromARGB(255, 204, 204, 204),
-        borderRadius: BorderRadius.all(Radius.circular(10)),
-      ),
-      margin: const EdgeInsets.only(top: 30),
-      height: 70,
-      child: Image.asset(logo),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            color: const Color.fromARGB(255, 204, 204, 204),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          margin: const EdgeInsets.only(top: 20),
+          height: height,
+          width: width,
+          child: Image.asset(
+            logo,
+
+          ),
+        ),
+        const SizedBox(height: 5),
+        SizedBox(
+          width: width + 6,
+          child: Text(
+            data,
+            textAlign: TextAlign.center,
+            softWrap: true,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(fontSize: 12),
+          ),
+        ),
+      ],
     );
   }
 }
 
-// ignore: must_be_immutable
 class Section1 extends StatelessWidget {
-  Section1({
-    super.key,
-    required this.logo,
-    this.title,
-    this.name,
-    this.sub,
-  });
+  Section1({Key? key, required this.logo, this.title, this.name, this.sub});
 
   var sub;
   var name;
   final logo;
   var title;
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 180,
+      width: 125,
+      height: 80,
       padding: const EdgeInsets.all(7),
       decoration: const BoxDecoration(
         color: Colors.black,
@@ -235,14 +252,121 @@ class Section1 extends StatelessWidget {
 }
 
 class Bar extends StatelessWidget {
-  const Bar({super.key, required this.path});
+  const Bar({Key? key, required this.path});
 
   final String path;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(15.0),
       child: Image.asset(path),
+    );
+  }
+}
+
+class Homeeee extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        border: Border(
+          bottom: BorderSide(
+            color: Colors.grey,
+            width: 1,
+          ),
+        ),
+      ),
+      padding: const EdgeInsets.all(30),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Row(
+            children: [
+              Text("Payer & Transfert"),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              ActionButton(logo: "Wireframe/SOS.png", data: "SOS"),
+              ActionButton(logo: "Wireframe/content.png", data: "Transfert credit",),
+              ActionButton(logo: "Wireframe/atom_quickicon_paybill.png", data: "Facture Orange",),
+              ActionButton(logo: "Wireframe/Trace 39.png", data: "Gérer ma Sim",),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class Homeeeee extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        border: Border(
+          bottom: BorderSide(
+            color: Colors.grey,
+            width: 1,
+          ),
+        ),
+      ),
+      padding: const EdgeInsets.all(30),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Row(
+            children: [
+              Text("Mes achats"),
+            ],
+          ),
+          Row(
+            children: [
+              ActionButton(logo: "Wireframe/atom_secondaryicon_myservices.png", data: "Mes services",),
+              const SizedBox(width: 10),
+              ActionButton(logo: "Wireframe/atom_secondaryicon_mytickets.png", data: "Tickets           .",),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class Homeeeeee extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        border: Border(
+          bottom: BorderSide(
+            color: Colors.grey,
+            width: 1,
+          ),
+        ),
+      ),
+      padding: const EdgeInsets.all(30),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Row(
+            children: [
+              Text("Besoin d'aide ?"),
+            ],
+          ),
+          Row(
+            children: [
+              ActionButton(logo: "Wireframe/atom_secondaryicon_faq.png", data: "Assistance en ligne"),
+              const SizedBox(width: 10),
+              ActionButton(logo: "Wireframe/atom_secondaryicon_bookspot.png", data: "Trouver une agence",),
+              const SizedBox(width: 10),
+              ActionButton(logo: "Wireframe/atom_quickicon_parainnage.png", data: "Parrainage             .",),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
